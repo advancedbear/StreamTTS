@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-language" content="ja">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keyword" content="advanced_bear,くまもっち,TwitchTalkApp,読み上げ,棒読みちゃん,EPGStation">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script src="./js/speech.js"></script>
+    <script src="./js/twitch.js"></script>
+    <title>StreamTTS - Twitch</title>
+    <style>
+        #comment_box {
+            overflow: scroll;
+            height: calc(100vh - 200px)
+        }
+        #comment_box::-webkit-scrollbar {
+            width: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper purple darken-4">
+            <a href="#!" class="brand-logo center">StreamTTS</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="left hide-on-med-and-down">
+                <li><a href="#">Youtube</a></li>
+                <li class="active"><a href="#">Twitch</a></li>
+                <li><a href="mixer.html">Mixer</a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="#">Youtube</a></li>
+        <li class="active"><a href="#">Twitch</a></li>
+        <li><a href="mixer.html">Mixer</a></li>
+    </ul>
+    <div class="row">
+        <div class="col s12 m5 l4">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collapsible">
+                        <li class="active">
+                            <div class="collapsible-header">
+                                <H5><i class="material-icons">settings</i>Connection Settings</H5>
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="channel_name" type="text" class="validate" required
+                                        pattern="[A-Za-z0-9_]+">
+                                    <label for="channel_name">Channel Name</label>
+                                    <span class="helper-text" data-error="正しく入力してください" data-success=""></span>
+                                </div>
+                                <div class="input-field">
+                                    <select id="mode">
+                                        <option value="0" id="select_bouyomi">Bouyomi-Chan</option>
+                                        <option value="1" id="select_sapi">Web Speech API</option>
+                                    </select>
+                                    <label>Read by</label>
+                                </div>
+                                <div class="divider"></div>
+                                <br />
+                                <div class="row">
+                                    <div class="col s12">
+                                        <button type="button" class="col s12 btn-large waves-effect waves-light teal"
+                                            onclick="connectTwitch()" id="connect_button"
+                                            style="display: inline-block;">Connect
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                    <div class="col s12">
+                                        <button type="button"
+                                            class="col s12 btn-large waves-effect waves-light red darken-1 disabled"
+                                            onclick="disconnectTwitch()" id="disconnect_button"
+                                            style="display: inline-block;">Disconnect
+                                            <i class="material-icons right">close</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m7 l8">
+            <h5 class="center-align">Comments</h5>
+            <div class="divider"></div>
+            <div class="row" id="comment_box">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
