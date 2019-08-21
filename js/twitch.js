@@ -36,6 +36,7 @@ function connectTwitch() {
                     $("#connect_button").toggleClass("disabled")
                     $("#disconnect_button").toggleClass("disabled")
                     $("#channel_name").attr("disabled", true)
+                    $("#howto").slideUp()
                     if(window.innerWidth < 600) $('.collapsible').collapsible('close', 0);
                 }
             }, 200)

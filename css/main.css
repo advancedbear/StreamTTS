@@ -1,0 +1,8 @@
+#comment_box {
+    overflow: scroll;
+    height: calc(100vh - 160px);
+}
+
+#comment_box::-webkit-scrollbar {
+    width: 10px;
+}

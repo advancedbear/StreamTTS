@@ -7,22 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="keyword" content="advanced_bear,くまもっち,TwitchTalkApp,読み上げ,棒読みちゃん,EPGStation">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css" />
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/materialize.min.js"></script>
     <script src="./js/speech.js"></script>
     <script src="./js/twitch.js"></script>
     <title>StreamTTS - Twitch</title>
-    <style>
-        #comment_box {
-            overflow: scroll;
-            height: calc(100vh - 200px)
-        }
-        #comment_box::-webkit-scrollbar {
-            width: 10px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -45,6 +36,15 @@
     <div class="row">
         <div class="col s12 m5 l4">
             <div class="row">
+                <div class="col s12" id="howto">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">How to Use</span>
+                            <p>読み上げたいチャンネルを入力してConnectボタンを押すだけ。</p>
+                            <p>棒読みちゃんの無い環境（スマートフォン等）ではWebSpeech機能が使えます。</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="col s12">
                     <ul class="collapsible">
                         <li class="active">
@@ -92,6 +92,11 @@
             </div>
         </div>
         <div class="col s12 m7 l8">
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large red" onclick="$('#comment_box').animate({scrollTop:0});return false;">
+                    <i class="large material-icons">arrow_upward</i>
+                </a>
+            </div>
             <h5 class="center-align">Comments</h5>
             <div class="divider"></div>
             <div class="row" id="comment_box">
