@@ -12,26 +12,28 @@
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/materialize.min.js"></script>
     <script src="./js/speech.js"></script>
-    <script src="./js/twitch.js"></script>
-    <title>StreamTTS - Twitch</title>
+    <script src="./js/mixer.js"></script>
+    <title>StreamTTS - Mixer</title>
+    <style>
+        </style>
 </head>
 
 <body>
     <nav>
-        <div class="nav-wrapper purple darken-4">
-            <a href="#!" class="brand-logo center">StreamTTS</a>
+        <div class="nav-wrapper indigo darken-3">
+            <a href="#!" class="brand-logo center">Stream TTS</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="left hide-on-med-and-down">
                 <!--<li><a href="#"><stroke>Youtube</stroke></a></li>-->
-                <li class="active"><a href="#">Twitch</a></li>
-                <li><a href="mixer.html">Mixer</a></li>
+                <li><a href="twitch.html">Twitch</a></li>
+                <li class="active"><a href="#">Mixer</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
         <!--<li><a href="#"><stroke>Youtube</stroke></a></li>-->
-        <li class="active"><a href="#">Twitch</a></li>
-        <li><a href="mixer.html">Mixer</a></li>
+        <li><a href="twitch.html">Twitch</a></li>
+        <li class="active"><a href="#">Mixer</a></li>
     </ul>
     <div class="row">
         <div class="col s12 m5 l4">
@@ -71,7 +73,7 @@
                                 <div class="row">
                                     <div class="col s12">
                                         <button type="button" class="col s12 btn-large waves-effect waves-light teal"
-                                            onclick="connectTwitch()" id="connect_button"
+                                            onclick="connectMixer()" id="connect_button"
                                             style="display: inline-block;">Connect
                                             <i class="material-icons right">send</i>
                                         </button>
@@ -79,7 +81,7 @@
                                     <div class="col s12">
                                         <button type="button"
                                             class="col s12 btn-large waves-effect waves-light red darken-1 disabled"
-                                            onclick="disconnectTwitch()" id="disconnect_button"
+                                            onclick="disconnectMixer()" id="disconnect_button"
                                             style="display: inline-block;">Disconnect
                                             <i class="material-icons right">close</i>
                                         </button>
