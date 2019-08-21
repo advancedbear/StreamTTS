@@ -6,72 +6,11 @@
     <meta http-equiv="content-language" content="ja">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="keyword" content="advanced_bear,くまもっち,TwitchTalkApp,読み上げ,棒読みちゃん,EPGStation">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
     <title>StreamTTS</title>
-
-    <script>
-        $(document).ready(function () {
-            $('select').formSelect();
-        });
-    </script>
+    <meta http-equiv=”refresh” content=”0;URL=’twitch.html'” />
 </head>
 
-<body>
-    <nav>
-        <div class="nav-wrapper indigo darken-3">
-            <a href="#!" class="brand-logo center">Stream TTS</a>
-            <ul class="left hide-on-med-and-down">
-                <li><a href="#">Youtube</a></li>
-                <li><a href="#">Twitch</a></li>
-                <li class="active"><a href="#">Mixer</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="row">
-        <div class="col s12 m3">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">Connection Settings</span>
-                            <div class="input-field">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="channel_name" type="text">
-                                <label for="channel_name">Channel Name</label>
-                            </div>
-                            <div class="input-field">
-                                <select>
-                                    <option value="0">Bouyomi-Chan</option>
-                                    <option value="1">Web Speech API</option>
-                                </select>
-                                <label>Read by</label>
-                            </div>
-                        </div>
-                        <div class="card-action right-align">
-                            <button class="btn waves-effect waves-light" type="button" onclick="connect_mixer()">Connect
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m9">
-            <h5 class="center-align">Comments</h5>
-            <div class="divider"></div>
-            <div class="row" id="comment_box">
-                <div class="col s12">
-                    <div class="card-panel">
-                        <H6>aaaa</H6>
-                        <span>I am a very simple card. </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body onload="location.href='twitch.html'">
 </body>
 
 </html>
