@@ -12,28 +12,26 @@
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/materialize.min.js"></script>
     <script src="./js/speech.js"></script>
-    <script src="./js/mixer.js"></script>
-    <title>StreamTTS - Mixer</title>
-    <style>
-        </style>
+    <script src="./js/youtube.js"></script>
+    <title>StreamTTS - Twitch</title>
 </head>
 
 <body>
     <nav>
-        <div class="nav-wrapper indigo darken-3">
-            <a href="#!" class="brand-logo center">Stream TTS</a>
+        <div class="nav-wrapper red darken-3">
+            <a href="#!" class="brand-logo center">StreamTTS</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="left hide-on-med-and-down">
-                <li><a href="youtube.html"><stroke>Youtube</stroke></a></li>
+                <li class="active"><a href="#"><stroke>Youtube</stroke></a></li>
                 <li><a href="twitch.html">Twitch</a></li>
-                <li class="active"><a href="#">Mixer</a></li>
+                <li><a href="mixer.html">Mixer</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="youtube.html"><stroke>Youtube</stroke></a></li>
+        <li class="active"><a href="#"><stroke>Youtube</stroke></a></li>
         <li><a href="twitch.html">Twitch</a></li>
-        <li class="active"><a href="#">Mixer</a></li>
+        <li><a href="mixer.html">Mixer</a></li>
     </ul>
     <div class="row">
         <div class="col s12 m5 l4">
@@ -42,8 +40,9 @@
                     <div class="card">
                         <div class="card-content">
                             <span class="card-title">How to Use</span>
-                            <p>読み上げたいチャンネルを入力してConnectボタンを押すだけ。</p>
+                            <p>読み上げたいYoutube LiveのURLを入力してConnectボタンを押すだけ。</p>
                             <p>棒読みちゃんの無い環境（スマートフォン等）ではWebSpeech機能が使えます。</p>
+                            <p>スーパーチャットは強調表示されます。</p>
                         </div>
                     </div>
                 </div>
@@ -56,9 +55,9 @@
                             <div class="collapsible-body">
                                 <div class="input-field">
                                     <i class="material-icons prefix">account_circle</i>
-                                    <input id="channel_name" type="text" class="validate" required
-                                        pattern="[A-Za-z0-9_]+">
-                                    <label for="channel_name">Channel Name</label>
+                                    <input id="video_url" type="text" class="validate" required
+                                        pattern="https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)(\w+)(&.+)*">
+                                    <label for="video_url">Youtube Live URL</label>
                                     <span class="helper-text" data-error="正しく入力してください" data-success=""></span>
                                 </div>
                                 <div class="input-field">
@@ -73,7 +72,7 @@
                                 <div class="row">
                                     <div class="col s12">
                                         <button type="button" class="col s12 btn-large waves-effect waves-light teal"
-                                            onclick="connectMixer()" id="connect_button"
+                                            onclick="connectYoutube()" id="connect_button"
                                             style="display: inline-block;">Connect
                                             <i class="material-icons right">send</i>
                                         </button>
@@ -81,7 +80,7 @@
                                     <div class="col s12">
                                         <button type="button"
                                             class="col s12 btn-large waves-effect waves-light red darken-1 disabled"
-                                            onclick="disconnectMixer()" id="disconnect_button"
+                                            onclick="disconnectYoutube()" id="disconnect_button"
                                             style="display: inline-block;">Disconnect
                                             <i class="material-icons right">close</i>
                                         </button>
