@@ -5,12 +5,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="content-language" content="ja">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="keyword" content="advanced_bear,くまもっち,TwitchTalkApp,読み上げ,棒読みちゃん,EPGStation">
+    <meta name="keyword" content="advanced_bear,くまもっち,TwitchTalkApp,読み上げ,棒読みちゃん">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css" />
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/materialize.min.js"></script>
     <title>StreamTTS</title>
-    <meta http-equiv="refresh" content="0;URL='twitch.html'" />
 </head>
 
-<body onload="location.href='twitch.html'">
+<body style="background: #B0BEC5;">
+    <div class="container valign-wrapper" style="height: 100vh;">
+        <div class="row">
+            <div class="col s12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title grey-text text-darken-4">StreamTTS</span>
+                        <p>簡易的なコメントビューア機能も兼ね備えた、PC/スマホ両対応のコメント読み上げサービスです。</p>
+                        <p>音声合成(棒読みちゃん/WebSpeech)により、各種配信サービスのコメントを読み上げます。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 l4">
+                <div class="card" onclick="location.href='youtube.html'">
+                    <div class="card-content red darken-3 waves-effect waves-block waves-light">
+                        <span class="card-title white-text center-align">YouTube Live</span>
+                    </div>
+                    <div class="card-content waves-effect waves-block center-align">
+                        <a href="#">使う</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 l4">
+                <div class="card" onclick="location.href='twitch.html'">
+                    <div class="card-content purple darken-4 waves-effect waves-block waves-light">
+                        <span class="card-title white-text center-align">Twitch</span>
+                    </div>
+                    <div class="card-content waves-effect waves-block center-align">
+                        <a href="#">使う</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 l4">
+                <div class="card" onclick="location.href='mixer.html'">
+                    <div class="card-content indigo darken-3 waves-effect waves-block waves-light">
+                        <span class="card-title white-text center-align">Mixer</span>
+                    </div>
+                    <div class="card-content waves-effect waves-block center-align">
+                        <a href="#">使う</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <p>問い合わせ: <a href="https://twitter.com/advanced_bear" target="_blank">@advanced_bear</a></p>
+                        <p>ソースコード: <a href="https://github.com/advancedbear/StreamTTS" target="_blank">advancedbear/StreamTTS - GitHub</a></p>
+                        <p class="center-align">© 2019 advanced_bear</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
