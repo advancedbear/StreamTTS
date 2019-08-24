@@ -13,7 +13,7 @@ function sayBouyomi(text) {
 }
 
 function sayWebspeech(text) {
-    speechSynthesis.cancel();
+    //speechSynthesis.cancel();
     let uttr = new SpeechSynthesisUtterance();
     uttr.text = text;
     uttr.lang = isEnglish(text) ?  uttr.lang = 'en-US' :  uttr.lang = 'ja-JP'
