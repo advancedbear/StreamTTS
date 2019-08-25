@@ -3,12 +3,12 @@
     "short_name": "StreamTTS",
     "icons": [
         {
-            "src": "/img/streamtts.png",
+            "src": "./img/streamtts.png",
             "sizes": "192x192",
             "type": "image/png"
         }
     ],
-    "start_url": "/",
+    "start_url": "/StreamTTS/",
     "display": "standalone",
     "theme_color": "#B0BEC5"
 }

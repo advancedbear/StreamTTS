@@ -21,7 +21,7 @@ $(document).ready(function () {
     }
     
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register("/serviceWorker.js")
+      navigator.serviceWorker.register("/StreamTTS/serviceWorker.js")
         .then(function(registration) {
           console.log("serviceWorker registed.")
         }).catch(function(error) {
