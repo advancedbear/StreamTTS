@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 function connectYoutube() {
     let videoUrl = $("#video_url").val()
-    let videoId = videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)(\w+)(&.+)*/)[2]
+    let videoId = videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)([\w\-]+)(&.+)*/)[2]
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/videos',
         type: 'GET',
