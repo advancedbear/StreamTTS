@@ -29,7 +29,7 @@ function connectTwitch() {
                     let card = `<div class="col s12"><div class="card-panel"><H6>${privmsg[1]}</H6><span>${privmsg[5]}</span></div></div>`
                     $(card).prependTo("#comment_box").hide().slideDown(300)
                     if(mode == 0) sayBouyomi(privmsg[5])
-                    else if(mode == 1)sayWebspeech(privmsg[5])
+                    else if(mode == 1) speechList.push(privmsg[5])
                 } else if (msg.indexOf("PING") != -1) {
                     socket.send("PONG :tmi.twitch.tv")
                 } else if (msg.indexOf("JOIN") != -1 ){

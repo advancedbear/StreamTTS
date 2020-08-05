@@ -23,25 +23,39 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'UA-101268720-3');
     </script>
 </head>
 
 <body>
+    <div id="end-of-mixer" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Mixer comes to an end.</h4>
+            <p>Microsoft社がサービスを提供していた Mixer は2020年7月22日でサービス終了しました。</p>
+            <p>Mixer利用者はFacebook Gamingへ移行しましたが、Facebook Gamingではコメントの取得が難しいため、本サービスでのコメント読み上げは不可能と判断しました。</p>
+            <p>利用者の方には申し訳ありませんが、他サービスをご利用ください。</p>
+        </div>
+        <div class="modal-footer">
+            <a href="index.html" class="modal-close waves-effect waves-light btn">トップへ戻る</a>
+        </div>
+    </div>
     <nav>
         <div class="nav-wrapper indigo darken-3">
             <a href="#!" class="brand-logo center">StreamTTS</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="left hide-on-med-and-down">
-                <li><a href="youtube.html"><stroke>Youtube</stroke></a></li>
+                <li><a href="youtube.html">
+                        <stroke>Youtube</stroke>
+                    </a></li>
                 <li><a href="twitch.html">Twitch</a></li>
                 <li class="active"><a href="#">Mixer</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="youtube.html"><stroke>Youtube</stroke></a></li>
+        <li><a href="youtube.html">
+                <stroke>Youtube</stroke>
+            </a></li>
         <li><a href="twitch.html">Twitch</a></li>
         <li class="active"><a href="#">Mixer</a></li>
     </ul>
@@ -77,6 +91,12 @@
                                         <option value="1" id="select_sapi">Web Speech API</option>
                                     </select>
                                     <label>Read by</label>
+                                    <p id="readskip" style="display: none;">
+                                        <label>
+                                            <input id="skipCheck" type="checkbox" class="filled-in" checked="checked" />
+                                            <span>コメント数が多いとき読み上げを上書きする</span>
+                                        </label>
+                                    </p>
                                 </div>
                                 <div class="divider"></div>
                                 <br />

@@ -14,6 +14,7 @@
     <link type="text/css" rel="stylesheet" href="./css/main.css" />
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/materialize.min.js"></script>
+    <script src="./js/socket.io.js"></script>
     <script src="./js/speech.js"></script>
     <script src="./js/youtube.js"></script>
     <title>StreamTTS - YouTube Live</title>
@@ -59,7 +60,6 @@
                             <p>読み上げたいYouTube LiveのURLを入力してConnectボタンを押すだけ。</p>
                             <p>棒読みちゃんの無い環境（スマートフォン等）ではWebSpeech機能が使えます。</p>
                             <p>スーパーチャットは強調表示されます。</p>
-                            <p class="red-text darken-4">YouTube Liveの仕様により、コメントは10秒おきに更新されます。</p>
                         </div>
                     </div>
                 </div>
@@ -83,6 +83,12 @@
                                         <option value="1" id="select_sapi">Web Speech API</option>
                                     </select>
                                     <label>Read by</label>
+                                    <p id="readskip" style="display: none;">
+                                        <label>
+                                          <input id="skipCheck" type="checkbox" class="filled-in" checked="checked" />
+                                          <span>コメント数が多いとき読み上げを上書きする</span>
+                                        </label>
+                                    </p>
                                 </div>
                                 <div class="divider"></div>
                                 <br />

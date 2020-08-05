@@ -10,6 +10,10 @@ $(document).ready(function () {
         $("#select_sapi").attr("selected", true)
     }
     $('select').formSelect();
+    $('.modal').modal({
+        dismissible: false
+    });
+    $('.modal').modal('open');
 });
 
 function connectMixer() {
@@ -48,7 +52,7 @@ function connectMixer() {
                             let card = `<div class="col s12"><div class="card-panel"><H6>${data.data.user_name}</H6><span>${message.text}</span></div></div>`
                             $(card).prependTo("#comment_box").hide().slideDown(300)
                             if (mode == 0) sayBouyomi(message.text)
-                            else if (mode == 1) sayWebspeech(message.text)
+                            else if (mode == 1) speechList.push(message.text)
                         }
                     }
                 }, 200)
