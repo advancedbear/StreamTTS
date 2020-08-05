@@ -1,6 +1,13 @@
-var socket, interval, interval2, lastUpdateTime
-var comment_buffer = new Array()
-var k = "QUl6YVN5Qm1IX1ZuZnZ5YzBxVlhVTGVKSzVzZVJGaUFNQnVfQTZB"
+var socket, mode;
+var color = {
+    4280191205: "light-blue accent-3",
+    4278248959: "cyan accent-2",
+    4280150454: "teal accent-3",
+    4294953512: "yellow accent-2",
+    4294278144: "orange accent-3",
+    4293467747: "pink darken-1",
+    4293271831: "red darken-1"
+}
 
 $(document).ready(function () {
     var ua = navigator.userAgent
@@ -12,74 +19,55 @@ $(document).ready(function () {
         $("#select_sapi").attr("selected", true)
     }
     $('select').formSelect()
+    socket = io('https://api.advbear.cf/');
+    socket.on('comment', (item) => {
+        let author = (String)(item.author.name)
+        let message = generateText(item.message)
+        if (!item.superchat) {
+            card = `<div class="col s12 message-panel"><div class="card-panel"><H6>${author}</H6><span>${message[0]}</span></div></div>`
+        } else {
+            amount = (String)(item.superchat.amount)
+            card = `<div class="col s12 superchat-panel"><div class="card-panel ${color[item.superchat.color]} pulse"><H6>${author} - <b>${amount}</b></H6><span>${message[0]}</span></div></div>`
+        }
+        $(card).prependTo("#comment_box").hide().slideDown(300)
+        if (mode == 0) sayBouyomi(message[1])
+        else if (mode == 1) speechList.push(message[1])
+    });
 })
 
-function connectYoutube() {
-    let videoUrl = $("#video_url").val()
-    let videoId = videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)([\w\-]+)(&.+)*/)[2]
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/videos',
-        type: 'GET',
-        data: {
-            part: 'liveStreamingDetails',
-            id: videoId,
-            key: atob(k)
+function generateText(message) {
+    let html = "";
+    let text = "";
+    for (msg of message) {
+        if ('url' in msg) {
+            html += `<img src="${msg.url}" style="height: 1em">`;
         }
-    }).done((data) => {
+        if ('text' in msg) {
+            html += msg.text
+            text += msg.text;
+        }
+    }
+    return [html, text];
+}
+
+function connectYoutube() {
+    mode = $("#mode").val()
+    let videoUrl = $("#video_url").val()
+    if (videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)([\w\-]+)(&.+)*/)) {
+        let videoId = videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)([\w\-]+)(&.+)*/)[2]
+        console.log(videoId)
+        socket.emit('begin', videoId);
         $("#connect_button").toggleClass("disabled")
         $("#disconnect_button").toggleClass("disabled")
         $("#video_url").attr("disabled", true)
-        $("#howto").slideUp()
-        if (window.innerWidth < 600) $('.collapsible').collapsible('close', 0)
-        let activeChatId = (data).items[0].liveStreamingDetails.activeLiveChatId
-        if (activeChatId != null) {
-            lastUpdateTime = new Date().getTime()
-            getComment(activeChatId)
-            interval = setInterval(() => {
-                getComment(activeChatId)
-            }, 10000)
-        }
-    })
+    } else {
+        alert("YouTube LiveのURLを入力してください")
+    }
 }
-
-function getComment(activeChatId){
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
-        type: 'GET',
-        data: {
-            liveChatId: activeChatId,
-            part: 'authorDetails,snippet',
-            hl: 'ja',
-            maxResults: 2000,
-            key: atob(k)
-        }
-    }).done((data) => {
-        let mode = $("#mode").val()
-        for (item of data.items) {
-            let UpdateTime = new Date(item.snippet.publishedAt).getTime()
-            if (lastUpdateTime < UpdateTime) {
-                console.log(item)
-                let author = (String)(item.authorDetails.displayName)
-                let card, message
-                if (item.snippet["textMessageDetails"]) {
-                    message = (String)(item.snippet.textMessageDetails.messageText)
-                    card = `<div class="col s12 message-panel"><div class="card-panel"><H6>${author}</H6><span>${message}</span></div></div>`
-                } else {
-                    message = (String)(item.snippet.displayMessage)
-                    card = `<div class="col s12 superchat-panel"><div class="card-panel orange lighten-4 pulse"><H6>${author}</H6><span>${message}</span></div></div>`
-                }
-                $(card).prependTo("#comment_box").hide().slideDown(300)
-                if (mode == 0) sayBouyomi(message)
-                else if (mode == 1) sayWebspeech(message)
-                if (item == data.items[data.items.length - 1]) lastUpdateTime = UpdateTime
-            }
-        }
-    })
-}
-
 
 function disconnectYoutube() {
-    clearInterval(interval)
+    socket.close()
+    socket.open()
     speechSynthesis.cancel();
     $("#connect_button").toggleClass("disabled")
     $("#disconnect_button").toggleClass("disabled")
