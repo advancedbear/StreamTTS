@@ -19,7 +19,7 @@ $(document).ready(function () {
         $("#select_sapi").attr("selected", true)
     }
     $('select').formSelect()
-    socket = io('https://api.advbear.cf/');
+    socket = io('https://api.advbear.net/');
     socket.on('comment', (item) => {
         let author = (String)(item.author.name)
         let message = generateText(item.message)
