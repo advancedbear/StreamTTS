@@ -53,7 +53,8 @@ function sayBouyomi(text) {
     })
 }
 
-function sayWebspeech(text) {
+function sayWebspeech(elem) {
+    let text = $(elem).find('span').text()
     if ($("#skipCheck").val()) speechSynthesis.cancel();
     let uttr = new SpeechSynthesisUtterance();
     uttr.text = text;
@@ -64,7 +65,8 @@ function sayWebspeech(text) {
 
 setInterval(() => {
     if (speechList.length != 0) {
-        sayWebspeech(speechList[0])
+        speechList[0].click()
+        //sayWebspeech(speechList[0])
         speechList = speechList.slice(Math.floor(speechList.length/10+1));
     }
 }, 1000 / (speechList.length + 1) * 0.75)

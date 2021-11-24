@@ -14,6 +14,7 @@ $(document).ready(function () {
 
 function connectTwitch() {
     channel = $("#channel_name").val()
+    if(channel.indexOf("https://") != -1) channel = channel.replace(/https?:\/\/www\.twitch\.tv\/(.*?)\/?.*/,"$1")
     if (channel != null) {
         socket = new WebSocket("wss://irc-ws.chat.twitch.tv:443")
         socket.addEventListener("open", (event) => {
@@ -25,12 +26,12 @@ function connectTwitch() {
                 let msg = event.data
                 let mode = $("#mode").val()
                 if (msg.indexOf("PRIVMSG") != -1) {
-                    let privmsg = msg.match(/:(.+)!(.+)@(.+)\.tmi\.twitch\.tv PRIVMSG #(.+) :(.+)/)
-                    let card = `<div class="col s12 message-panel"><div class="card-panel"><H6>${privmsg[1]}</H6><span>${privmsg[5]}</span></div></div>`
-                    $(card).prependTo("#comment_box").hide().slideDown(300)
+                    let privmsg = msg.replace(/(\x01ACTION|\x01)/g,"").match(/:(.+)!(.+)@(.+)\.tmi\.twitch\.tv PRIVMSG #(.+) :(.+)/)
+                    let card = `<div class="col s12 message-panel" onclick="sayWebspeech(this)"><div class="card-panel"><H6>${privmsg[1]}</H6><span>${privmsg[5]}</span></div></div>`
+                    let obj = $(card).prependTo("#comment_box").hide().slideDown(300)
                     if($('.message-panel').length > 100) $('.message-panel:last').slideUp(300).remove()
                     if(mode == 0) sayBouyomi(privmsg[5])
-                    else if(mode == 1) speechList.push(privmsg[5])
+                    else if(mode == 1) speechList.push(obj)
                 } else if (msg.indexOf("PING") != -1) {
                     socket.send("PONG :tmi.twitch.tv")
                 } else if (msg.indexOf("JOIN") != -1 ){
@@ -42,6 +43,7 @@ function connectTwitch() {
                 }
             }, 200)
         })
+        sayWebspeech($("<p><span>読み上げを開始します</span><p>"))
     }
 }
 

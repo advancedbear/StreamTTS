@@ -24,15 +24,17 @@ $(document).ready(function () {
         let author = (String)(item.author.name)
         let message = generateText(item.message)
         if (!item.superchat) {
-            card = `<div class="col s12 message-panel"><div class="card-panel"><H6>${author}</H6><span>${message[0]}</span></div></div>`
+            card = `<div class="col s12 message-panel" onclick="sayWebspeech(this)"><div class="card-panel"><H6>${author}</H6><span>${message[0]}</span></div></div>`
         } else {
             amount = (String)(item.superchat.amount)
-            card = `<div class="col s12 message-panel"><div class="card-panel ${color[item.superchat.color]} pulse"><H6>${author} - <b>${amount}</b></H6><span>${message[0]}</span></div></div>`
+            card = `<div class="col s12 message-panel" onclick="sayWebspeech(this)"><div class="card-panel ${color[item.superchat.color]} pulse"><H6>${author} - <b>${amount}</b></H6><span>${message[0]}</span></div></div>`
         }
-        $(card).prependTo("#comment_box").hide().slideDown(300)
+        let obj = $(card).prependTo("#comment_box").hide().slideDown(300)
         if($('.message-panel').length > 100) $('.message-panel:last').slideUp(300).remove()
         if (mode == 0) sayBouyomi(message[1])
-        else if (mode == 1) speechList.push(message[1])
+        else if (mode == 1) {
+            speechList.push(obj)
+        }
     });
 })
 
@@ -61,6 +63,7 @@ function connectYoutube() {
         $("#connect_button").toggleClass("disabled")
         $("#disconnect_button").toggleClass("disabled")
         $("#video_url").attr("disabled", true)
+        sayWebspeech($("<p><span>読み上げを開始します</span><p>"))
     } else {
         alert("YouTube LiveのURLを入力してください")
     }
