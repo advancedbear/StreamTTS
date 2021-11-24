@@ -1,4 +1,5 @@
 var speechList = [];
+console.log(typeof SpeechSynthesisUtterance);
 
 $(document).ready(function () {
     if (!localStorage["accept_privacy_policy"]) {
@@ -58,7 +59,7 @@ function sayWebspeech(text) {
     uttr.text = text;
     uttr.rate = speechList.length<30 ? 1.0 : (speechList.length + 1) / 20;
     uttr.lang = isEnglish(text) ? uttr.lang = 'en-US' : uttr.lang = 'ja-JP'
-    speechSynthesis.speak(uttr);
+    window.speechSynthesis.speak(uttr);
 }
 
 setInterval(() => {

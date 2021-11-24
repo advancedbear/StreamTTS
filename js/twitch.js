@@ -26,8 +26,9 @@ function connectTwitch() {
                 let mode = $("#mode").val()
                 if (msg.indexOf("PRIVMSG") != -1) {
                     let privmsg = msg.match(/:(.+)!(.+)@(.+)\.tmi\.twitch\.tv PRIVMSG #(.+) :(.+)/)
-                    let card = `<div class="col s12"><div class="card-panel"><H6>${privmsg[1]}</H6><span>${privmsg[5]}</span></div></div>`
+                    let card = `<div class="col s12 message-panel"><div class="card-panel"><H6>${privmsg[1]}</H6><span>${privmsg[5]}</span></div></div>`
                     $(card).prependTo("#comment_box").hide().slideDown(300)
+                    if($('.message-panel').length > 100) $('.message-panel:last').slideUp(300).remove()
                     if(mode == 0) sayBouyomi(privmsg[5])
                     else if(mode == 1) speechList.push(privmsg[5])
                 } else if (msg.indexOf("PING") != -1) {
