@@ -4,10 +4,11 @@ $(document).ready(function () {
     var ua = navigator.userAgent;
     $('.sidenav').sidenav();
     $('.collapsible').collapsible();
-    if (ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) {
+    if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) {
         console.log("mobile")
         $("#select_bouyomi").attr("disabled", true)
         $("#select_sapi").attr("selected", true)
+        $("#readskip").slideDown(150);
     }
     $('select').formSelect();
     $('.modal').modal({
