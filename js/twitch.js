@@ -1,4 +1,4 @@
-var socket, channel
+var socket, channel, url
 
 $(document).ready(function () {
     var ua = navigator.userAgent;
@@ -11,10 +11,24 @@ $(document).ready(function () {
         $("#readskip").slideDown(150);
     }
     $('select').formSelect();
+    url = new URL(window.location)
+    if(url.searchParams.has("channel")) {
+        $("#channel_name").val(url.searchParams.get("channel"))
+        $("#mode").val(url.searchParams.get("mode"))
+        $("#skipCheck").val(url.searchParams.get("skipCheck"))
+        M.updateTextFields()
+        connectTwitch()
+    }
 });
 
 function connectTwitch() {
     channel = $("#channel_name").val()
+    url.searchParams.set('channel', channel)
+    url.searchParams.set('mode', $("#mode").val())
+    url.searchParams.set('skipCheck', $("#skipCheck").val())
+    if ($("#mode").val() == 0) $("#readskip").slideUp(150);
+    else if ($("#mode").val() == 1) $("#readskip").slideDown(150);
+    window.history.pushState({}, null, url)
     if(channel.indexOf("https://") != -1) channel = channel.replace(/https?:\/\/www\.twitch\.tv\/(.*?)\/?.*/,"$1")
     if (channel != null) {
         socket = new WebSocket("wss://irc-ws.chat.twitch.tv:443")
