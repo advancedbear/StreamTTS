@@ -1,12 +1,12 @@
 var socket, mode;
 var color = {
-    4280191205: "light-blue accent-3",
-    4278248959: "cyan accent-2",
-    4280150454: "teal accent-3",
-    4294953512: "yellow accent-2",
-    4294278144: "orange accent-3",
-    4293467747: "pink darken-1",
-    4293271831: "red darken-1"
+    '#1E88E5': "light-blue accent-3",
+    '#00E5FF': "cyan accent-2",
+    '#1DE9B6': "teal accent-3",
+    '#FFCA28': "yellow accent-2",
+    '#F57C00': "orange accent-3",
+    '#E91E63': "pink darken-1",
+    '#E62117': "red darken-1"
 }
 
 $(document).ready(function () {
