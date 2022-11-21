@@ -8,7 +8,7 @@ $(document).ready(function () {
         console.log("mobile")
         $("#select_bouyomi").attr("disabled", true)
         $("#select_sapi").attr("selected", true)
-        $("#readskip").slideDown(150);
+        $("#sapi_opt").slideDown(150);
     }
     $('select').formSelect();
     url = new URL(window.location)
