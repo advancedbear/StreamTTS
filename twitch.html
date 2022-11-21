@@ -55,6 +55,7 @@
                             <p>読み上げたいチャンネルを入力してConnectボタンを押すだけ。</p>
                             <p>棒読みちゃんの無い環境（スマートフォン等）ではWebSpeech機能が使えます。</p>
                             <p style="color: red; font-weight: bold;">Connect後のURLをOBS等に読み込むことで、直接読み上げが可能です。</p>
+                            <p style="color:red">【2022/11/21 更新】WebSpeech音声を選択できるようになりました。Edgeブラウザをご利用の場合はMicrosoftのAI音声（「Natural」と記載されたもの）が使えます。</p>
                         </div>
                     </div>
                 </div>
@@ -73,15 +74,21 @@
                                     <span class="helper-text" data-error="正しく入力してください" data-success=""></span>
                                 </div>
                                 <label>Read by</label>
-                                <div class="input-field">
-                                    <select id="mode" class="browser-default">
-                                        <option value="0" id="select_bouyomi">Bouyomi-Chan</option>
-                                        <option value="1" id="select_sapi">Web Speech API</option>
+                                <select id="mode" class="browser-default">
+                                    <option value="0" id="select_bouyomi">Bouyomi-Chan</option>
+                                    <option value="1" id="select_sapi">Web Speech API</option>
+                                </select>
+                                <div id="sapi_opt" style="display: none;">
+                                    <label>Japanese Voice</label>
+                                    <select id="voiceJP" class="browser-default">
                                     </select>
-                                    <p id="readskip" style="display: none;">
+                                    <label>English Voice</label>
+                                    <select id="voice" class="browser-default">
+                                    </select>
+                                    <p id="readskip">
                                         <label>
-                                          <input id="skipCheck" type="checkbox" class="filled-in" checked="checked" />
-                                          <span>コメント数が多いとき読み上げを上書きする</span>
+                                            <input id="skipCheck" type="checkbox" class="filled-in" checked="checked" />
+                                            <span>コメント数が多いとき読み上げを上書きする</span>
                                         </label>
                                     </p>
                                 </div>

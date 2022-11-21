@@ -1,5 +1,6 @@
 var speechList = [];
 console.log(typeof SpeechSynthesisUtterance);
+var voices = speechSynthesis.getVoices();
 
 $(document).ready(function () {
     if (!localStorage["accept_privacy_policy"]) {
@@ -32,9 +33,18 @@ $(document).ready(function () {
             })
     }
 
+    voices = speechSynthesis.getVoices();
+    for (idx in voices) {
+        if(voices[idx].lang == 'ja-JP') {
+            $('#voiceJP').append(`<option value="${idx}" ${voices[idx].name.indexOf("Online")<0 ? "" : "selected"}>${voices[idx].name}</option>`);
+        } else {
+            $('#voice').append(`<option value="${idx}" ${voices[idx].lang != "en-US" ? "" : "selected"}>${voices[idx].name}</option>`);
+        }
+    }
+
     $("#mode").change(() => {
-        if ($("#mode").val() == 0) $("#readskip").slideUp(150);
-        else if ($("#mode").val() == 1) $("#readskip").slideDown(150);
+        if ($("#mode").val() == 0) $("#sapi_opt").slideUp(150);
+        else if ($("#mode").val() == 1) $("#sapi_opt").slideDown(150);
     })
 })
 
@@ -59,7 +69,8 @@ function sayWebspeech(elem) {
     let uttr = new SpeechSynthesisUtterance();
     uttr.text = text;
     uttr.rate = speechList.length<30 ? 1.0 : (speechList.length + 1) / 20;
-    uttr.lang = isEnglish(text) ? uttr.lang = 'en-US' : uttr.lang = 'ja-JP'
+    uttr.lang = isEnglish(text) ? 'en-US' : 'ja-JP'
+    uttr.voice = isEnglish(text) ? voices[$('#voice').val()] : voices[$('#voiceJP').val()] 
     window.speechSynthesis.speak(uttr);
 }
 

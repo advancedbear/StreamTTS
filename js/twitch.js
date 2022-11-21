@@ -38,6 +38,7 @@ function connectTwitch() {
         })
         socket.addEventListener("message", (event) => {
             setTimeout(() => {
+                console.log(event.data)
                 let msg = event.data
                 let mode = $("#mode").val()
                 if (msg.indexOf("PRIVMSG") != -1) {
