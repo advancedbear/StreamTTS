@@ -57,8 +57,8 @@ function generateText(message) {
 function connectYoutube() {
     mode = $("#mode").val()
     let videoUrl = $("#video_url").val()
-    if (videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)([\w\-]+)(&.+)*/)) {
-        let videoId = videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)([\w\-]+)(&.+)*/)[2]
+    if (videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=|www\.youtube\.com\/live\/)([\w\-]+)([&?].+)*/)) {
+        let videoId = videoUrl.match(/https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=|www\.youtube\.com\/live\/)([\w\-]+)([&?].+)*/)[2]
         console.log(videoId)
         socket.emit('begin', videoId);
         $("#connect_button").toggleClass("disabled")

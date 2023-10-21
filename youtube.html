@@ -60,7 +60,7 @@
                             <p>読み上げたいYouTube LiveのURLを入力してConnectボタンを押すだけ。</p>
                             <p>棒読みちゃんの無い環境（スマートフォン等）ではWebSpeech機能が使えます。</p>
                             <p>スーパーチャットは強調表示されます。</p>
-                            <p style="color:red">【2022/11/21 更新】WebSpeech音声を選択できるようになりました。Edgeブラウザをご利用の場合はMicrosoftのAI音声（「Natural」と記載されたもの）が使えます。音声が表示されない場合はページをリロードしてみてください。</p>
+                            <p style="color:red">【2023/10/21 更新】YouTubeの新しい共有URL（www.youtube.com/live/*****）形式に対応しました。</p>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                                 <div class="input-field">
                                     <i class="material-icons prefix">account_circle</i>
                                     <input id="video_url" type="text" class="validate" required
-                                        pattern="https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=)([\w\-]+)(&.+)*">
+                                        pattern="https:\/\/(youtu\.be\/|www\.youtube\.com\/watch\?v=|www\.youtube\.com\/live\/)([\w\-]+)([&?].+)*">
                                     <label for="video_url">Youtube Live URL</label>
                                     <span class="helper-text" data-error="正しく入力してください" data-success=""></span>
                                 </div>
