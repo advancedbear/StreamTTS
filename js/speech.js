@@ -1,6 +1,7 @@
-var speechList = [];
+var speechList = 0;
 console.log(typeof SpeechSynthesisUtterance);
 var voices = speechSynthesis.getVoices();
+var rate = 1.0
 
 $(document).ready(function () {
     if (!localStorage["accept_privacy_policy"]) {
@@ -35,8 +36,8 @@ $(document).ready(function () {
 
     voices = speechSynthesis.getVoices();
     for (idx in voices) {
-        if(voices[idx].lang == 'ja-JP') {
-            $('#voiceJP').append(`<option value="${idx}" ${voices[idx].name.indexOf("Online")<0 ? "" : "selected"}>${voices[idx].name}</option>`);
+        if (voices[idx].lang == 'ja-JP') {
+            $('#voiceJP').append(`<option value="${idx}" ${voices[idx].name.indexOf("Online") < 0 ? "" : "selected"}>${voices[idx].name}</option>`);
         } else {
             $('#voice').append(`<option value="${idx}" ${voices[idx].lang != "en-US" ? "" : "selected"}>${voices[idx].name}</option>`);
         }
@@ -50,7 +51,7 @@ $(document).ready(function () {
 
 
 function isEnglish(text) {
-    return (text.match("^(.*[｡-ﾟ０-９ａ-ｚＡ-Ｚぁ-んァ-ヶ亜-黑一-龠々ー].*)*$")) ? false : true
+    return (text.match("^(.*[｡-ﾟ０-９ａ-ｚＡ-Ｚぁ-んァ-ヶ亜-黑一-龠々ー！？].*)*$")) ? false : true
 }
 
 function sayBouyomi(text) {
@@ -65,19 +66,18 @@ function sayBouyomi(text) {
 
 function sayWebspeech(elem) {
     let text = $(elem).find('span').text()
-    if ($("#skipCheck").val()) speechSynthesis.cancel();
-    let uttr = new SpeechSynthesisUtterance();
-    uttr.text = text;
-    uttr.rate = speechList.length<30 ? 1.0 : (speechList.length + 1) / 20;
-    uttr.lang = isEnglish(text) ? 'en-US' : 'ja-JP'
-    uttr.voice = isEnglish(text) ? voices[$('#voice').val()] : voices[$('#voiceJP').val()] 
-    window.speechSynthesis.speak(uttr);
-}
-
-setInterval(() => {
-    if (speechList.length != 0) {
-        speechList[0].click()
-        //sayWebspeech(speechList[0])
-        speechList = speechList.slice(Math.floor(speechList.length/10+1));
+    if (text.length > 0) {
+        if ($("#skipCheck").prop('checked')) {
+            speechSynthesis.cancel();
+            speechList = 0
+        }
+        speechList++
+        let uttr = new SpeechSynthesisUtterance();
+        uttr.text = text;
+        uttr.rate = speechList < 50 ? (1 - Math.sqrt(1 - Math.pow(speechList / 50, 2))) * 9 + 1 : 10.0;
+        uttr.lang = isEnglish(text) ? 'en-US' : 'ja-JP'
+        uttr.voice = isEnglish(text) ? voices[$('#voice').val()] : voices[$('#voiceJP').val()]
+        window.speechSynthesis.speak(uttr);
+        uttr.addEventListener('end', () => { speechList-- })
     }
-}, 1000 / (speechList.length + 1) * 0.75)
+}

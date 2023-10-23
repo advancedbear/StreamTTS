@@ -47,7 +47,7 @@ function connectTwitch() {
                     let obj = $(card).prependTo("#comment_box").hide().slideDown(300)
                     if($('.message-panel').length > 100) $('.message-panel:last').slideUp(300).remove()
                     if(mode == 0) sayBouyomi(privmsg[5])
-                    else if(mode == 1) speechList.push(obj)
+                    else if(mode == 1) obj.click()
                 } else if (msg.indexOf("PING") != -1) {
                     socket.send("PONG :tmi.twitch.tv")
                 } else if (msg.indexOf("JOIN") != -1 ){
@@ -65,6 +65,7 @@ function connectTwitch() {
 
 function disconnectTwitch(){
     socket.send(`PART #${channel}`)
+    speechSynthesis.cancel();
     $("#connect_button").toggleClass("disabled")
     $("#disconnect_button").toggleClass("disabled")
     $("#channel_name").attr("disabled", false)

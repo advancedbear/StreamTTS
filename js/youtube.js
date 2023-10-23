@@ -34,7 +34,7 @@ $(document).ready(function () {
         if($('.message-panel').length > 100) $('.message-panel:last').slideUp(300).remove()
         if (mode == 0) sayBouyomi(message[1])
         else if (mode == 1) {
-            speechList.push(obj)
+            obj.click()
         }
     });
 })
@@ -77,5 +77,6 @@ function disconnectYoutube() {
     $("#connect_button").toggleClass("disabled")
     $("#disconnect_button").toggleClass("disabled")
     $("#video_url").attr("disabled", false)
+    speechList = 0
     setTimeout(() => { $("#comment_box").fadeOut(500).empty().fadeIn(500) }, 500)
 }
