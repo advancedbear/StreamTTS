@@ -55,13 +55,12 @@ function isEnglish(text) {
 }
 
 function sayBouyomi(text) {
-    $.get({
-        url: "http://localhost:50080/talk",
-        data: {
-            text: text
-        }
-    })
+    fetch(`http://localhost:50080/talk?text=${encodeURIComponent(text)}`, {
+        method: "GET",
+        mode: "cors"
+    });
 }
+
 
 function sayWebspeech(elem) {
     let text = $(elem).find('span').text()
