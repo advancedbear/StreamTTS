@@ -55,13 +55,8 @@ function isEnglish(text) {
 }
 
 function sayBouyomi(text) {
-    $.ajax({
+    $.get({
         url: "http://localhost:50080/talk",
-        type: "GET",
-        headers: {
-            "Accept": "text/plain"
-        },
-        contentType: "text/plain",
         data: {
             text: text
         }
