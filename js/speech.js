@@ -57,7 +57,7 @@ function isEnglish(text) {
 function sayBouyomi(text) {
     fetch(`http://localhost:50080/talk?text=${encodeURIComponent(text)}`, {
         method: "GET",
-        mode: "cors",
+        mode: "no-cors",
         headers: {
             Accept: "text/plain"
         }
