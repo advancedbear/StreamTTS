@@ -37,6 +37,28 @@ $(document).ready(function () {
             obj.click()
         }
     });
+
+    /* 2025/11/25 Googleによりコメント取得がブロックされたため一時的にメンテナンスバナーを表示 */
+    let modal = `
+    <div id="modal2" class="modal" >
+    <div class="modal-content">
+        <h4>YouTubeチャット読み上げは現在停止中です</h4>
+        <p>当サイトで利用していたYouTubeのコメント取得がGoogleによりブロックされたため、一時的にこの機能を停止しています。</p>
+        <p>代替手段が現時点では見つかっていないため、再開の予定は未定です。</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn">閉じる</a>
+    </div>
+    </div>
+    `
+    $("body").append(modal)
+    $("#connect_button").toggleClass("disabled")
+    $('.modal').modal({
+        dismissible: false
+    });
+    $('.modal').modal('open')
+
+
 })
 
 function generateText(message) {
